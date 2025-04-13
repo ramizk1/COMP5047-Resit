@@ -1,0 +1,110 @@
+Subsystem Overview:
+The CloudTables-Customer subsystem is a critical part of the broader CloudTables platform, designed to manage customer-facing operations such as table bookings, order placement, payments, feedback collection, and notifications. The subsystem follows a microservices architectural style, where independent services communicate via well-defined interfaces, promoting modularity, scalability, and resilience.
+
+BookingService:
+Responsibilities: Manages the full lifecycle of customer bookings, including checking availability, creating new bookings, updating or cancelling existing ones, and retrieving booking status.
+Methods:
+  - checkAvailability()
+  - createBooking()
+  - cancelBooking()
+  - getBookingStatus()
+Interfaces:
+  - Provided: IBooking (consumed by the User Interface)
+  - Required: IDataStore (Database), IAuth (AuthService)
+Dependencies:
+  - Requires user authentication via AuthService.
+  - Stores and retrieves booking data through the Database.
+
+OrderService:
+Responsibilities: Handles the creation and management of customer food orders, including menu retrieval and order placement.
+Methods:
+  - placeOrder()
+  - getMenuItems()
+Interfaces:
+  - Required: IOrderStore (provided by Database)
+
+PaymentService:
+Responsibilities: Processes and verifies customer payments securely.
+Methods:
+  - processPayment()
+  - verifyPayment()
+Interfaces:
+  - Required: IPaymentStore (provided by Database)
+
+FeedBackService:
+Responsibilities: Allows customers to submit and view feedback related to their experience.
+Methods:
+  - submitFeedback()
+  - getFeedback()
+Interfaces:
+  - Required: IFeedbackStore (provided by Database)
+
+NotificationService:
+Responsibilities: Sends confirmations and reminders to customers based on key events (e.g., booking created, order placed).
+Methods:
+  - sendConfirmation()
+  - sendReminder()
+Interfaces:
+  - Required: IMessaging (provided by MessagingGateway)
+
+MessagingGateway:
+Responsibilities: Abstracts external messaging APIs for email and SMS delivery.
+Methods:
+  - deliverEmail()
+  - deliverSMS()
+
+Database:
+Responsibilities: Centralized storage of all customer-related data including bookings, feedback, orders, and availability.
+Methods:
+  - storeBooking()
+  - getAvailability()
+  - storeReview()
+  - storeOrder()
+Interfaces:
+  - Provided: IDataStore, IOrderStore, IPaymentStore, IFeedbackStore
+
+AuthService:
+Responsibilities: Manages authentication of users through login and verification processes.
+Methods:
+  - verifyUser()
+  - login()
+Interfaces:
+  - Provided: IAuth
+
+User Interface:
+Responsibilities: Acts as the entry point for customers via web or mobile apps.
+Interfaces:
+  - Consumes: IBooking (from BookingService)
+
+Communication Between Components:
+Services interact via explicitly defined interfaces rather than direct method calls. The system is loosely coupled using REST APIs. BookingService, OrderService, and FeedbackService interact with the centralized Database. NotificationService delegates email/SMS delivery to the external-facing MessagingGateway.
+
+Security Measures:
+Authentication:
+- All user requests are authenticated using JWT tokens through AuthService.
+
+Encryption:
+- TLS is enforced for API communications.
+- Sensitive data (e.g., payment info) is stored encrypted (AES-256).
+
+Access Control:
+- Role-based access rules govern which services or users can access specific endpoints or methods.
+
+Scalability and Fault Tolerance:
+Scalability:
+- Stateless microservices (e.g., NotificationService) can be replicated horizontally.
+- Services are deployed in containers and orchestrated via Kubernetes (or similar), enabling elastic scaling.
+
+Fault Tolerance:
+- Circuit breaker patterns and retry mechanisms are used in external-facing services (e.g., MessagingGateway).
+- BookingService and PaymentService are designed to handle partial failures gracefully.
+
+Data Flow Summary:
+Input:
+- User initiates a request via the interface (e.g., booking or order).
+
+Processing:
+- BookingService, OrderService, etc., validate and process the request, storing necessary information in the database.
+
+Output:
+- NotificationService sends confirmation via email or SMS through MessagingGateway.
