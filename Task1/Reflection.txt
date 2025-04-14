@@ -1,21 +1,16 @@
 Reflection:
-
 Use of GitHub for Version Control
-
-As this was an individual resit submission, I utilised GitHub as a version control system to manage and back up my coursework throughout the development process. A dedicated private repository was created to store all deliverables, including diagrams, documentation, and working versions of each task. GitHub enabled clear tracking of progress, with regular commits made during the design, modelling, and refinement stages. This provided a reliable audit trail and allowed previous versions to be reviewed or restored when necessary.
+As this was an individual resit submission, I intended to use GitHub as a version control system to manage and back up my coursework throughout the development process. However, I had some issues which meant I couldn’t do so, but instead still had backup notes and version history on each file anyway to be able to track my progress overtime. At the end I submitted all work at one time onto GitHub.
 
 Repository Setup and File Management
-
-The repository was structured according to the coursework tasks. Each task was allocated its own folder (e.g., Task2_QualityRequirements, Task3_UseCaseActivity), which improved organisation and made navigation easier. Files were clearly named to reflect their purpose and version (e.g., BookingService_SequenceDiagram_v2.drawio).
+The repository was structured according to the coursework tasks. Each task was allocated its own folder (e.g., Task2_QualityRequirements, Task3_UseCaseActivity), which improved organisation and made navigation easier. Files were clearly named to reflect their purpose and version.
 
 UML Modelling Tool
-
-I used draw.io (diagrams.net) as the primary UML modelling tool. It supported the creation of various diagram types including use case, activity, component, class, and sequence diagrams. The tool adheres to UML standards and allowed for accurate modelling of the CloudTables-Customer subsystem. Diagrams were exported as .jpg files.
+I used draw.io (diagrams.net) as my primary UML modelling tool and sometimes would use UMLDesigner. However overall, I did prefer using draw.io. It supported the creation of various diagram types including use case, activity, component, class, and sequence diagrams. The tool follows UML standards and allowed for accurate modelling of the CloudTables-Customer subsystem. Diagrams were exported as .jpg  and .png files.
 
 Individual Project Management and Reflection
-
 Working independently required effective time management and attention to detail to ensure each task met the coursework specifications. I approached the project iteratively, drafting each diagram and document, cross-referencing them with the marking criteria, and refining them to maintain consistency with the case study and the microservices architecture.
 
 One of the challenges encountered was ensuring consistency between the architectural diagram and the class and sequence diagrams. I addressed this by regularly revisiting and aligning my designs, ensuring all interfaces and services were consistently represented. Another area of focus was translating high-level functional requirements into verifiable and measurable quality attributes in Task 2, which I refined through multiple iterations and reference to lecture materials.
 
-Overall, the structured use of version control, clear task segmentation, and the application of industry-standard tools enabled me to deliver a coherent and technically sound submission.
+Overall, the structured use of version control, clear task segmentation, and the application of well-known tools enabled me to deliver a coherent and technically sound submission.
